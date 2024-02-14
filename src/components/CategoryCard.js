@@ -5,19 +5,21 @@ import {
   Text,
   View,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { inactiveColor } from "../styles/Colors";
 
 const Categories = () => {
   return (
-    <View style={styles.container}>
-      {/* Category Ttile */}
+    <>
       <View style={styles.nameContainer}>
         <Text style={textStyles.headingText}>Categories</Text>
-        <Text style={textStyles.buttonText}>See All</Text>
+        <TouchableOpacity>
+          <Text style={textStyles.buttonText}>See All</Text>
+        </TouchableOpacity>
       </View>
-      <ScrollView horizontal style={{}}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {/* Category Card */}
         <TouchableWithoutFeedback>
           <View style={styles.cardContainer}>
@@ -55,14 +57,13 @@ const Categories = () => {
           </View>
         </TouchableWithoutFeedback>
       </ScrollView>
-    </View>
+    </>
   );
 };
 
 export default Categories;
 
 const styles = StyleSheet.create({
-  container: { justifyContent: "center", margin: 2 },
   nameContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: "row",
     margin: 6,
-    width: 145,
+    width: 140,
     height: "80%",
     alignItems: "center",
     borderRadius: 100 / 2,
@@ -83,6 +84,14 @@ const styles = StyleSheet.create({
     width: 52,
     height: 52,
     borderRadius: 90,
+    alignSelf: "flex-start",
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 2,
+    flex: 1,
   },
 });
 
@@ -93,9 +102,7 @@ const textStyles = StyleSheet.create({
     textAlign: "center",
   },
   titleText: {
-    fontSize: 14,
-    margin: 10,
-    textAlign: "center",
+    fontSize: 13,
   },
   commonText: { fontSize: 14, margin: 2 },
   buttonText: { fontSize: 18, color: inactiveColor, margin: 2 },

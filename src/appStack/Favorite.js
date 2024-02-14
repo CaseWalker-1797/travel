@@ -1,4 +1,5 @@
 import {
+  FlatList,
   Image,
   ScrollView,
   StyleSheet,
@@ -11,8 +12,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon, IconButton } from "react-native-paper";
 import { accentColor, bgColor } from "../styles/Colors";
 import FavoriteCard from "../components/FavoriteCard";
+import { useSelector } from "react-redux";
 
 const Favorite = () => {
+  const AddToLike = useSelector((state) => state.addLike);
+
+  const renderData = ({ item }) => {
+    return <FavoriteCard item={item} />;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Back Button & Header */}
@@ -26,7 +34,10 @@ const Favorite = () => {
         />
         <Text style={textStyles.headingText}>Saved Trips</Text>
       </View>
-      <FavoriteCard/>
+      {/* <ScrollView>
+        <FavoriteCard />
+      </ScrollView> */}
+      <FlatList data={AddToLike} renderItem={renderData} />
     </SafeAreaView>
   );
 };

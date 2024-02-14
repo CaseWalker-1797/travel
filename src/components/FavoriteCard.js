@@ -9,23 +9,25 @@ import {
 import React from "react";
 import { accentColor, bgColor } from "../styles/Colors";
 import { Icon } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem } from "../redux/AddToLikeSlice";
 
-const FavoriteCard = () => {
+const FavoriteCard = ({ item }) => {
+  const AddToLike = useSelector((state) => state.addLike);
+  const dispatch = useDispatch();
+
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <>
       {/* Trip Card */}
       <View style={styles.cardContainer}>
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: "https://picsum.photos/300/300" }}
-            style={styles.image}
-          />
+          <Image source={{ uri: item.images[0] }} style={styles.image} />
         </View>
         <View style={styles.cardContentContainer}>
           {/* Title & Rating */}
           <View style={styles.titleContainer}>
             <Text style={{ fontSize: 20, fontWeight: "bold", margin: 2 }}>
-              Red Fish Lake
+              {item.user.name}{" "}
             </Text>
             <View
               style={{
@@ -56,19 +58,21 @@ const FavoriteCard = () => {
               margin: 2,
             }}
           >
-            <Text style={{ fontSize: 14, margin: 2 }}>$40 </Text>
+            <Text style={textStyles.rateText}>$ {item.likes} </Text>
             <Text>/ Visit</Text>
           </View>
           {/* Booking Button */}
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => console.log("Pressed")}
+            onPress={(isChecked) => {
+              if(isChecked) dispatch(removeItem(item));
+            }}
           >
-            <Text style={textStyles.buttonText}>Book Now</Text>
+            <Text style={textStyles.buttonText}>Remove</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </>
   );
 };
 
@@ -87,6 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     margin: 6,
+    padding: 8,
     alignItems: "center",
     borderRadius: 48 / 2,
     backgroundColor: bgColor,

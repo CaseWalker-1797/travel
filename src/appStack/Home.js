@@ -1,4 +1,5 @@
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -14,10 +15,11 @@ import {
   borderColor,
   inactiveColor,
 } from "../styles/Colors";
-import Categories from "../components/Categories";
-import TopTrip from "../components/TopTrip";
+import Categories from "../components/CategoryCard";
+import TopTrip from "../components/TopTripCard";
+import GroupTrip from "../components/GroupTripCard";
 
-const Home = () => {
+const Home = ({ info }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* Location Bar */}
@@ -107,8 +109,17 @@ const Home = () => {
           <Icon source="tune" color={bgColor} size={28} />
         </TouchableOpacity>
       </View>
-      <Categories />
-      <TopTrip />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ margin: 2, padding: 1 }}
+      >
+        {/* Category Section */}
+        <Categories />
+        {/* Top Trip Section */}
+        <TopTrip />
+        {/* Group Trip Section */}
+        <GroupTrip />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -116,4 +127,19 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({});
-const textStyles = StyleSheet.create({});
+
+const textStyles = StyleSheet.create({
+  headingText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  titleText: { fontSize: 16, fontWeight: "bold", margin: 3 },
+  commonText: { fontSize: 14, margin: 3 },
+  rateText: {
+    fontSize: 14,
+    color: accentColor,
+    margin: 3,
+  },
+  buttonText: { fontSize: 18, color: inactiveColor, margin: 2 },
+});
