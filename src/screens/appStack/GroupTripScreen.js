@@ -46,8 +46,4 @@ const textStyles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  titleText: { fontSize: 20, fontWeight: "bold", margin: 2 },
-  commonText: { fontSize: 14, margin: 2 },
-  rateText: { fontSize: 14, color: accentColor, margin: 2 },
-  buttonText: { fontSize: 12, color: bgColor, margin: 2 },
 });

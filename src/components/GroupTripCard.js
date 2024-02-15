@@ -164,8 +164,8 @@ const textStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     fontFamily: "Inter",
-    textAlign: "center",
     color: "black",
+    textAlign: "center",
   },
   titleText: {
     fontSize: 20,

@@ -23,87 +23,44 @@ const Home = ({ info }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* Location Bar */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          margin: 2,
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "start",
-            padding: 4,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: inactiveColor, margin: 10 }}>
-            Location
-          </Text>
-          <View
+      <View style={styles.locationContainer}>
+        <View style={styles.currentLocation}>
+          <Text
             style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-evenly",
+              fontSize: 16,
+              fontFamily: "Inter",
+              color: inactiveColor,
+              margin: 10,
             }}
           >
+            Location
+          </Text>
+          <View style={styles.cityContainer}>
             <Icon source="map-marker" size={32} />
-            <Text style={{ fontSize: 16 }}>New York, USA</Text>
-            <Icon source="chevron-down" size={32} />
+            <Text style={textStyles.cityText}>New York, USA</Text>
+            <Icon source="chevron-down" color="gold" size={32} />
           </View>
         </View>
-        <Icon source="bell" size={32} />
+        <View style={{ margin: 6, alignSelf: "center" }}>
+          <Icon
+            source={require("../../assets/icons/bell_badge.png")}
+            size={28}
+          />
+        </View>
       </View>
       {/* Search Bar */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: 2,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "start",
-            backgroundColor: bgColor,
-            borderRadius: 50 / 2,
-            borderColor: borderColor,
-            borderWidth: 1,
-            flex: 1,
-            elevation: 5,
-            shadowOffset: {
-              width: 0,
-              height: 1,
-            },
-            shadowOpacity: 0.1,
-          }}
-        >
+      <View style={styles.searchbarContainer}>
+        <View style={styles.inputContainer}>
           <Icon source="magnify" color={inactiveColor} size={28} />
           <TextInput
             placeholder="Search"
-            style={{
-              padding: 10,
-              margin: 4,
-              fontSize: 16,
-              color: inactiveColor,
-              flex: 1,
-            }}
+            style={styles.textInputContainer}
             keyboardType="default"
           />
         </View>
         {/* Filter Button */}
         <TouchableOpacity
-          className="p-3 rounded-full"
-          style={{
-            backgroundColor: accentColor,
-            padding: 8,
-            borderRadius: 24 / 2,
-            margin: 6,
-          }}
+          style={styles.filterButtonContainer}
           onPress={() => console.log("User Profile")}
         >
           <Icon source="tune" color={bgColor} size={28} />
@@ -126,20 +83,66 @@ const Home = ({ info }) => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  locationContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: 2,
+  },
+  currentLocation: {
+    justifyContent: "center",
+    alignItems: "start",
+    padding: 4,
+  },
+  cityContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  searchbarContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 2,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "start",
+    backgroundColor: bgColor,
+    borderRadius: 50 / 2,
+    borderColor: borderColor,
+    borderWidth: 1,
+    flex: 1,
+    elevation: 5,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+  },
+  textInputContainer: {
+    padding: 10,
+    margin: 4,
+    fontSize: 16,
+    color: inactiveColor,
+    flex: 1,
+  },
+  filterButtonContainer: {
+    backgroundColor: accentColor,
+    padding: 8,
+    borderRadius: 24 / 2,
+    margin: 6,
+  },
+});
 
 const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
     fontWeight: "bold",
+    fontFamily: "Inter",
     textAlign: "center",
   },
-  titleText: { fontSize: 16, fontWeight: "bold", margin: 3 },
-  commonText: { fontSize: 14, margin: 3 },
-  rateText: {
-    fontSize: 14,
-    color: accentColor,
-    margin: 3,
-  },
-  buttonText: { fontSize: 18, color: inactiveColor, margin: 2 },
+  cityText: { fontSize: 16, fontFamily: "Inter", color: "black" },
 });

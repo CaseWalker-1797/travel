@@ -26,9 +26,7 @@ const FavoriteCard = ({ item }) => {
         <View style={styles.cardContentContainer}>
           {/* Title & Rating */}
           <View style={styles.titleContainer}>
-            <Text style={{ fontSize: 20, fontWeight: "bold", margin: 2 }}>
-              {item.user.name}{" "}
-            </Text>
+            <Text style={textStyles.headingText}>{item.user.name}</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -47,8 +45,7 @@ const FavoriteCard = ({ item }) => {
               margin: 2,
             }}
           >
-            <Icon source="map-marker" size={20} />
-            <Text style={{ fontSize: 14, margin: 2 }}>Idaho</Text>
+            <Text style={textStyles.commonText}>{item.descriptions}</Text>
           </View>
           {/* Rate */}
           <View
@@ -58,8 +55,8 @@ const FavoriteCard = ({ item }) => {
               margin: 2,
             }}
           >
-            <Text style={textStyles.rateText}>$ {item.likes} </Text>
-            <Text>/ Visit</Text>
+            <Text style={textStyles.rateText}> {item.likes} </Text>
+            <Text style={textStyles.commonText}>/ Like</Text>
           </View>
           {/* Booking Button */}
           <TouchableOpacity
@@ -158,10 +155,33 @@ const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
     fontWeight: "bold",
+    fontFamily: "Inter",
+    color: "black",
     textAlign: "center",
   },
-  titleText: { fontSize: 20, fontWeight: "bold", margin: 2 },
-  commonText: { fontSize: 14, margin: 2 },
-  rateText: { fontSize: 14, color: accentColor, margin: 2 },
-  buttonText: { fontSize: 12, color: bgColor, margin: 2 },
+  titleText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: "Inter",
+    color: "black",
+    margin: 2,
+  },
+  commonText: {
+    fontSize: 14,
+    fontFamily: "Inter",
+    color: "black",
+    margin: 2,
+  },
+  rateText: {
+    fontSize: 14,
+    fontFamily: "Inter",
+    color: accentColor,
+    margin: 2,
+  },
+  buttonText: {
+    fontSize: 12,
+    fontFamily: "Inter",
+    color: bgColor,
+    margin: 2,
+  },
 });
