@@ -10,7 +10,7 @@ import React from "react";
 import { accentColor, bgColor } from "../styles/Colors";
 import { Icon } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem } from "../redux/AddToLikeSlice";
+import { removeItem } from "../redux/slice/AddToLikeSlice";
 
 const FavoriteCard = ({ item }) => {
   const AddToLike = useSelector((state) => state.addLike);
@@ -64,8 +64,8 @@ const FavoriteCard = ({ item }) => {
           {/* Booking Button */}
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={(isChecked) => {
-              if(isChecked) dispatch(removeItem(item));
+            onPress={(AddToLike) => {
+              if (AddToLike) dispatch(removeItem(item));
             }}
           >
             <Text style={textStyles.buttonText}>Remove</Text>

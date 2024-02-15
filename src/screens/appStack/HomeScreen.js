@@ -14,10 +14,10 @@ import {
   bgColor,
   borderColor,
   inactiveColor,
-} from "../styles/Colors";
-import Categories from "../components/CategoryCard";
-import TopTrip from "../components/TopTripCard";
-import GroupTrip from "../components/GroupTripCard";
+} from "../../styles/Colors";
+import Categories from "../../components/CategoryCard";
+import TopTrip from "../../components/TopTripCard";
+import GroupTrip from "../../components/GroupTripCard";
 
 const Home = ({ info }) => {
   return (

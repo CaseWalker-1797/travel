@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AddToLikeSlice from "../redux/AddToLikeSlice";
+import AddToLikeSlice from "../slice/AddToLikeSlice";
 
 const reducer = {
   addLike: AddToLikeSlice,

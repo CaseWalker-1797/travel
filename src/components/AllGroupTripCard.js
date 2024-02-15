@@ -14,7 +14,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ProgressBar from "react-native-progress/Bar";
 import { useNavigation } from "@react-navigation/native";
 
-const GroupTrip = () => {
+const AllGroupTripCard = () => {
   const [info, setInfo] = useState([]);
   const [show, setShow] = useState(false);
   const navigation = useNavigation();
@@ -78,27 +78,15 @@ const GroupTrip = () => {
     </View>
   );
   return (
-    <>
-      <View style={styles.nameContainer}>
-        <Text style={textStyles.headingText}>Group Trips</Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Group");
-          }}
-        >
-          <Text style={textStyles.buttonText}>See All</Text>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={show ? info : info.slice(0, 3)}
-        renderItem={renderData}
-      />
-    </>
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      data={info}
+      renderItem={renderData}
+    />
   );
 };
 
-export default GroupTrip;
+export default AllGroupTripCard;
 
 const styles = StyleSheet.create({
   nameContainer: {

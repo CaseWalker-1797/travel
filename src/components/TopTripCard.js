@@ -11,16 +11,16 @@ import Axios from "react-native-axios";
 import { inactiveColor, bgColor, accentColor } from "../styles/Colors";
 import { Icon, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, selectItem } from "../redux/AddToLikeSlice";
+import { removeItem, selectItem } from "../redux/slice/AddToLikeSlice";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { useNavigation } from "@react-navigation/native";
 
 const TopTrip = () => {
   const AddToLike = useSelector((state) => state.addLike);
-
+  const navigation = useNavigation();
   const [heart, setHeart] = useState();
   const [info, setInfo] = useState([]);
-  const [like, setLike] = useState(false);
   const [show, setShow] = useState(false);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,14 +55,15 @@ const TopTrip = () => {
           </View>
           {/* Location */}
           <View style={styles.locationContainer}>
-            <Icon source="map-marker" size={20} />
-            <Text style={textStyles.commonText}>Idaho</Text>
+            <Text numberOfLines={1} style={textStyles.commonText}>
+              {item.descriptions}
+            </Text>
           </View>
           {/* Rate */}
           <View style={styles.rateContainer}>
             <View style={{ flexDirection: "row" }}>
-              <Text style={textStyles.rateText}>$ {item.likes} </Text>
-              <Text style={textStyles.commonText}>/ Visit</Text>
+              <Text style={textStyles.rateText}>{item.likes} </Text>
+              <Text style={textStyles.commonText}> / Likes</Text>
             </View>
             <IconButton
               icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
@@ -87,7 +88,7 @@ const TopTrip = () => {
         <Text style={textStyles.headingText}>Top Trips</Text>
         <TouchableOpacity
           onPress={() => {
-            setShow(true);
+            navigation.navigate("Top");
           }}
         >
           <Text style={textStyles.buttonText}>See All</Text>
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     borderRadius: 48 / 2,
     backgroundColor: bgColor,
-    padding: 8,
+    padding: 12,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -153,8 +154,8 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   locationContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    width: RFValue(120),
+    alignItems: "flex-start",
     margin: 3,
   },
   rateContainer: {
@@ -169,14 +170,33 @@ const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
     fontWeight: "bold",
+    fontFamily: "Inter",
+    color: "black",
     textAlign: "center",
   },
-  titleText: { fontSize: 16, fontWeight: "bold", margin: 3 },
-  commonText: { fontSize: 14, margin: 3 },
+  titleText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    fontFamily: "Inter",
+    color: "black",
+    margin: 3,
+  },
+  commonText: {
+    fontSize: 14,
+    fontFamily: "Inter",
+    color: "black",
+    margin: 3,
+  },
   rateText: {
     fontSize: 14,
+    fontFamily: "Inter",
     color: accentColor,
     margin: 3,
   },
-  buttonText: { fontSize: 18, color: inactiveColor, margin: 2 },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: "Inter",
+    color: inactiveColor,
+    margin: 3,
+  },
 });
