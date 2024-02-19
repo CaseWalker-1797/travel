@@ -17,9 +17,12 @@ import { useNavigation } from "@react-navigation/native";
 
 const TopTrip = () => {
   const ShowContent = useSelector((state) => state.showContent);
+  const AddToLike = useSelector((state) => state.addLike);
   const navigation = useNavigation();
   const [heart, setHeart] = useState();
+  const [data,setData]=useState([]);
   const dispatch = useDispatch();
+
 
   const renderData = ({ item }) => {
     return (
@@ -54,13 +57,13 @@ const TopTrip = () => {
               <Text style={textStyles.commonText}> / Likes</Text>
             </View>
             <IconButton
-              icon={ShowContent?.includes(item) ? "heart" : "heart-outline"}
+              icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
               iconColor={accentColor}
               backgroundColor="white"
               size={24}
               onPress={() => {
                 setHeart(!heart);
-                if (ShowContent?.includes(item)) dispatch(removeItem(item));
+                if (AddToLike?.includes(item)) dispatch(removeItem(item));
                 else dispatch(selectItem(item));
               }}
             />
@@ -80,12 +83,13 @@ const TopTrip = () => {
         >
           <Text style={textStyles.buttonText}>See All</Text>
         </TouchableOpacity>
+        {console.log("data++++++++++++============>",data)}
       </View>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{ flexDirection: "row" }}
-        data={ShowContent}
+        data={AddToLike}
         renderItem={renderData}
       />
     </>

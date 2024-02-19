@@ -1,17 +1,10 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import React, { useState } from "react";
 import { accentColor, bgColor } from "../styles/Colors";
 import { Icon, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItem, removeItem } from "../redux/slice/AddToLikeSlice";
-import { horizontalScale, verticalScale } from "../styles/Dimensions";
+import { horizontalScale } from "../styles/Dimensions";
 
 const AllTopTripCard = ({ item }) => {
   const AddToLike = useSelector((state) => state.addLike);

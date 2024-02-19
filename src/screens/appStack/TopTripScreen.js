@@ -7,13 +7,14 @@ import { useNavigation } from "@react-navigation/native";
 import AllTopTripCard from "../../components/AllTopTripCard";
 import Axios from "react-native-axios";
 import { useDispatch } from "react-redux";
-import { showItem } from "../../redux/slice/ShowContentSlice";
+import { showItem, storeData } from "../../redux/slice/ShowContentSlice";
 
 const AllTopTrip = () => {
   const navigation = useNavigation();
   const [info, setInfo] = useState([]);
   const renderData = ({ item }) => <AllTopTripCard item={item} />;
   const dispatch = useDispatch();
+
   useEffect(() => {
     Axios.get("https://unikwork.com/instagram/api/get_data.php")
       .then((response) => {
@@ -22,12 +23,14 @@ const AllTopTrip = () => {
       .catch((error) => {
         console.log(error);
       });
-    dispatch(showItem(info));
+    dispatch(storeData(info));
   }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Back Button & Header */}
       <View style={styles.actionBar}>
+        {console.log("info ==> ", dispatch(storeData(info)))}
         {/* Back Button */}
         <IconButton
           icon="arrow-left"
