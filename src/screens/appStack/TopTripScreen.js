@@ -2,12 +2,10 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton } from "react-native-paper";
-import { accentColor, bgColor } from "../../styles/Colors";
 import { useNavigation } from "@react-navigation/native";
 import AllTopTripCard from "../../components/AllTopTripCard";
 import Axios from "react-native-axios";
 import { useDispatch } from "react-redux";
-import { showItem, storeData } from "../../redux/slice/ShowContentSlice";
 
 const AllTopTrip = () => {
   const navigation = useNavigation();
@@ -23,14 +21,12 @@ const AllTopTrip = () => {
       .catch((error) => {
         console.log(error);
       });
-    dispatch(storeData(info));
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Back Button & Header */}
       <View style={styles.actionBar}>
-        {console.log("info ==> ", dispatch(storeData(info)))}
         {/* Back Button */}
         <IconButton
           icon="arrow-left"

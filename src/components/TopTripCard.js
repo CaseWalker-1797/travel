@@ -14,13 +14,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { showItem } from "../redux/slice/ShowContentSlice";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
+import { removeItem } from "../redux/slice/AddToLikeSlice";
 
 const TopTrip = () => {
-  const ShowContent = useSelector((state) => state.showContent);
   const AddToLike = useSelector((state) => state.addLike);
   const navigation = useNavigation();
   const [heart, setHeart] = useState();
-  const [data,setData]=useState([]);
   const dispatch = useDispatch();
 
 
@@ -83,7 +82,6 @@ const TopTrip = () => {
         >
           <Text style={textStyles.buttonText}>See All</Text>
         </TouchableOpacity>
-        {console.log("data++++++++++++============>",data)}
       </View>
       <FlatList
         horizontal
