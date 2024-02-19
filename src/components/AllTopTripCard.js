@@ -11,90 +11,74 @@ import { accentColor, bgColor } from "../styles/Colors";
 import { Icon, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItem, removeItem } from "../redux/slice/AddToLikeSlice";
-import Axios from "react-native-axios";
+import { horizontalScale, verticalScale } from "../styles/Dimensions";
 
-const AllTopTripCard = () => {
+const AllTopTripCard = ({ item }) => {
   const AddToLike = useSelector((state) => state.addLike);
   const [heart, setHeart] = useState();
-  const [info, setInfo] = useState([]);
   const dispatch = useDispatch();
-  useEffect(() => {
-    Axios.get("https://unikwork.com/instagram/api/get_data.php")
-      .then((response) => {
-        setInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // console.log("AddToLike ==> ", JSON.stringify(AddToLike));
+  // console.log("item ==> ", JSON.stringify(item));
+  // console.log("state ==> ", AddToLike?.includes(item));
 
-  const renderData = ({ item }) => {
-    return (
-      <>
-        {/* Trip Card */}
-        <View style={styles.cardContainer}>
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: item.images[0] }} style={styles.image} />
-          </View>
-          <View style={styles.cardContentContainer}>
-            {/* Title & Rating */}
-            <View style={styles.titleContainer}>
-              <Text style={{ fontSize: 20, fontWeight: "bold", margin: 2 }}>
-                {item.user.name}{" "}
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Icon source="star" size={20} />
-                <Text style={textStyles.commonText}>4.5</Text>
-              </View>
-            </View>
-            {/* Location */}
+  return (
+    <>
+      {/* Trip Card */}
+      <View style={styles.cardContainer}>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: item.images[0] }} style={styles.image} />
+        </View>
+        <View style={styles.cardContentContainer}>
+          {/* Title & Rating */}
+          <View style={styles.titleContainer}>
+            <Text style={textStyles.titleText}>{item.user.name} </Text>
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                margin: 2,
               }}
             >
-              <Text numberOfLines={2} style={{ fontSize: 14, margin: 2 }}>
-                {item.comments}
-              </Text>
-            </View>
-            {/* Rate */}
-            <View style={styles.rateContainer}>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={textStyles.rateText}> {item.likes} </Text>
-                <Text>/ Like</Text>
-              </View>
-              <IconButton
-                icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
-                iconColor={accentColor}
-                backgroundColor="white"
-                size={24}
-                onPress={() => {
-                  setHeart(!heart);
-                  if (AddToLike?.includes(item)) dispatch(removeItem(item));
-                  else dispatch(selectItem(item));
-                }}
-              />
+              <Icon source="star" size={20} />
+              <Text style={textStyles.commonText}>4.5</Text>
             </View>
           </View>
+          {/* Location */}
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              margin: 2,
+            }}
+          >
+            <Text numberOfLines={2} style={{ fontSize: 14, margin: 2 }}>
+              {item.comments}
+            </Text>
+          </View>
+          {/* Rate */}
+          <View style={styles.rateContainer}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={textStyles.rateText}> {item.likes} </Text>
+              <Text>/ Like</Text>
+            </View>
+            <IconButton
+              icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
+              iconColor={AddToLike?.includes(item) ? accentColor : "dimgray"}
+              backgroundColor="white"
+              size={24}
+              onPress={() => {
+                if (AddToLike?.includes(item)) {
+                  dispatch(removeItem(item));
+                  setHeart(heart);
+                } else {
+                  dispatch(selectItem(item));
+                  setHeart(!heart);
+                }
+              }}
+            />
+          </View>
         </View>
-      </>
-    );
-  };
-
-  return (
-    <FlatList
-      showsVerticalScrollIndicator={false}
-      // style={{ flexDirection: "row" }}
-      data={info}
-      renderItem={renderData}
-    />
+      </View>
+    </>
   );
 };
 
@@ -138,7 +122,7 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
   image: {
-    width: 180,
+    width: horizontalScale(180),
     height: "100%",
     borderRadius: 48 / 2,
   },
@@ -170,10 +154,10 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "700",
     textAlign: "center",
   },
-  titleText: { fontSize: 20, fontWeight: "bold", margin: 2 },
+  titleText: { fontSize: 16, fontWeight: "700", margin: 2 },
   commonText: { fontSize: 14, margin: 2 },
   rateText: { fontSize: 14, color: accentColor, margin: 2 },
   buttonText: { fontSize: 12, color: bgColor, margin: 2 },

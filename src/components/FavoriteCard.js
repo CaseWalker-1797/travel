@@ -26,7 +26,7 @@ const FavoriteCard = ({ item }) => {
         <View style={styles.cardContentContainer}>
           {/* Title & Rating */}
           <View style={styles.titleContainer}>
-            <Text style={textStyles.headingText}>{item.user.name}</Text>
+            <Text style={textStyles.titleText}>{item.user.name}</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -152,16 +152,9 @@ const styles = StyleSheet.create({
 });
 
 const textStyles = StyleSheet.create({
-  headingText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    fontFamily: "Inter",
-    color: "black",
-    textAlign: "center",
-  },
   titleText: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 16,
+    fontWeight: "600",
     fontFamily: "Inter",
     color: "black",
     margin: 2,

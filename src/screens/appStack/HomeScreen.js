@@ -18,8 +18,9 @@ import {
 import Categories from "../../components/CategoryCard";
 import TopTrip from "../../components/TopTripCard";
 import GroupTrip from "../../components/GroupTripCard";
+import { verticalScale } from "../../styles/Dimensions";
 
-const Home = ({ info }) => {
+const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* Location Bar */}
@@ -51,7 +52,9 @@ const Home = ({ info }) => {
       {/* Search Bar */}
       <View style={styles.searchbarContainer}>
         <View style={styles.inputContainer}>
-          <Icon source="magnify" color={inactiveColor} size={28} />
+          <View style={styles.iconContainer}>
+            <Icon source="magnify" color="dimgray" size={28} />
+          </View>
           <TextInput
             placeholder="Search"
             style={styles.textInputContainer}
@@ -106,16 +109,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 2,
   },
+  iconContainer: { marginLeft: 10, marginRight: 8 },
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "start",
     backgroundColor: bgColor,
-    borderRadius: 50 / 2,
+    borderRadius: 70 / 2,
     borderColor: borderColor,
     borderWidth: 1,
-    flex: 1,
     elevation: 5,
+    padding: 0,
     shadowOffset: {
       width: 0,
       height: 1,
@@ -123,11 +128,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
   },
   textInputContainer: {
-    padding: 10,
-    margin: 4,
+    height: 20,
+    flex: 1,
+    padding: 0,
+    lineHeight: 20,
+    marginRight: 14,
+    marginVertical: 13,
     fontSize: 16,
     color: inactiveColor,
-    flex: 1,
   },
   filterButtonContainer: {
     backgroundColor: accentColor,

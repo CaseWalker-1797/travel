@@ -13,6 +13,7 @@ import { Icon } from "react-native-paper";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ProgressBar from "react-native-progress/Bar";
 import { useNavigation } from "@react-navigation/native";
+import { horizontalScale, verticalScale } from "../styles/Dimensions";
 
 const GroupTrip = () => {
   const [info, setInfo] = useState([]);
@@ -54,7 +55,7 @@ const GroupTrip = () => {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: "bold",
+              fontWeight: "600",
               color: accentColor,
               textAlign: "right",
             }}
@@ -70,7 +71,7 @@ const GroupTrip = () => {
             borderWidth={0}
             color={accentColor}
             progress={0.8}
-            width={RFValue(160)}
+            width={horizontalScale(180)}
             height={8}
           />
         </View>
@@ -135,8 +136,8 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
   image: {
-    width: RFValue(140),
-    height: RFValue(140),
+    width: horizontalScale(150),
+    height: "100%",
     borderRadius: 40 / 2,
   },
   cardContentContainer: {
@@ -162,14 +163,14 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "700",
     fontFamily: "Inter",
     color: "black",
     textAlign: "center",
   },
   titleText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "700",
     fontFamily: "Inter",
     color: "black",
     margin: 2,
@@ -181,7 +182,7 @@ const textStyles = StyleSheet.create({
     margin: 2,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: "Inter",
     color: inactiveColor,
     margin: 2,

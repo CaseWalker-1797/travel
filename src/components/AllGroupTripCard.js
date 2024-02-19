@@ -54,7 +54,7 @@ const AllGroupTripCard = () => {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: "bold",
+              fontWeight: "600",
               color: accentColor,
               textAlign: "right",
             }}
@@ -148,16 +148,9 @@ const styles = StyleSheet.create({
 });
 
 const textStyles = StyleSheet.create({
-  headingText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    fontFamily: "Inter",
-    textAlign: "center",
-    color: "black",
-  },
   titleText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "600",
     fontFamily: "Inter",
     color: "black",
     margin: 2,
@@ -169,7 +162,7 @@ const textStyles = StyleSheet.create({
     margin: 2,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: "Inter",
     color: inactiveColor,
     margin: 2,

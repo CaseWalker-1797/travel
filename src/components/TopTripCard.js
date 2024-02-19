@@ -11,31 +11,19 @@ import Axios from "react-native-axios";
 import { inactiveColor, bgColor, accentColor } from "../styles/Colors";
 import { Icon, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, selectItem } from "../redux/slice/AddToLikeSlice";
+import { showItem } from "../redux/slice/ShowContentSlice";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
 
 const TopTrip = () => {
-  const AddToLike = useSelector((state) => state.addLike);
+  const ShowContent = useSelector((state) => state.showContent);
   const navigation = useNavigation();
   const [heart, setHeart] = useState();
-  const [info, setInfo] = useState([]);
-  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    Axios.get("https://unikwork.com/instagram/api/get_data.php")
-      .then((response) => {
-        setInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   const renderData = ({ item }) => {
     return (
-      <View style={styles.cardContainer}>
+      <View item={item} style={styles.cardContainer}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: item?.images[0] }} style={styles.image} />
         </View>
@@ -66,13 +54,13 @@ const TopTrip = () => {
               <Text style={textStyles.commonText}> / Likes</Text>
             </View>
             <IconButton
-              icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
+              icon={ShowContent?.includes(item) ? "heart" : "heart-outline"}
               iconColor={accentColor}
               backgroundColor="white"
               size={24}
               onPress={() => {
                 setHeart(!heart);
-                if (AddToLike?.includes(item)) dispatch(removeItem(item));
+                if (ShowContent?.includes(item)) dispatch(removeItem(item));
                 else dispatch(selectItem(item));
               }}
             />
@@ -81,7 +69,6 @@ const TopTrip = () => {
       </View>
     );
   };
-
   return (
     <>
       <View style={styles.nameContainer}>
@@ -98,7 +85,7 @@ const TopTrip = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{ flexDirection: "row" }}
-        data={show ? info : info.slice(0, 3)}
+        data={ShowContent}
         renderItem={renderData}
       />
     </>
@@ -169,14 +156,14 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "700",
     fontFamily: "Inter",
     color: "black",
     textAlign: "center",
   },
   titleText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "600",
     fontFamily: "Inter",
     color: "black",
     margin: 3,

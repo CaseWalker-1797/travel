@@ -7,10 +7,11 @@ import { Icon } from "react-native-paper";
 import Home from "../screens/appStack/HomeScreen";
 import Favorite from "../screens/appStack/FavoriteScreen";
 import StackNavigator from "./StackNavigator";
+import { verticalScale } from "../styles/Dimensions";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const Navigation = ({navigation}) => {
+const Navigation = ({ navigation }) => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -21,6 +22,7 @@ const Navigation = ({navigation}) => {
         backgroundColor: bgColor,
         borderColor: inactiveColor,
         borderTopWidth: 1,
+        height: verticalScale(75),
       }}
       theme={{ colors: { secondaryContainer: "transparent" } }}
     >
@@ -30,7 +32,7 @@ const Navigation = ({navigation}) => {
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Icon source="home" color={color} size={32} />
+            <Icon source="home" color={color} size={28} />
           ),
         }}
       />
@@ -40,7 +42,7 @@ const Navigation = ({navigation}) => {
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Icon source="heart" color={color} size={32} />
+            <Icon source="heart" color={color} size={28} />
           ),
         }}
       />

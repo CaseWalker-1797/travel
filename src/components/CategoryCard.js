@@ -58,33 +58,6 @@ const Categories = () => {
             </TouchableWithoutFeedback>
           );
         })}
-        {/* <TouchableWithoutFeedback
-          onPress={() => {
-            setClick(true);
-          }}
-        >
-          <View
-            style={[
-              { borderColor: click ? accentColor : inactiveColor },
-              styles.cardContainer,
-            ]}
-          >
-            <View
-              style={[
-                { backgroundColor: click ? accentColor : bgColor },
-                styles.imageContainer,
-              ]}
-            >
-              <Image
-                source={require("../assets/icons/lake.png")}
-                style={styles.image}
-              />
-            </View>
-            <View style={styles.titleContainer}>
-              <Text style={textStyles.titleText}>{cat.name}</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback> */}
       </ScrollView>
     </>
   );
@@ -102,7 +75,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: "row",
     margin: 6,
-    width: 140,
+    width: "25%",
     height: "80%",
     borderRadius: 100 / 2,
     borderWidth: 1,
@@ -121,20 +94,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    margin: 2,
     flex: 1,
+    paddingRight: 12,
   },
 });
 
 const textStyles = StyleSheet.create({
   headingText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "700",
+    fontFamily: "Inter",
     textAlign: "center",
     color: "black",
   },
   titleText: {
-    fontSize: 13,
+    fontSize: 14,
+    paddingRight: 8,
     fontFamily: "Inter",
     color: "black",
   },
