@@ -58,15 +58,19 @@ const AllTopTripCard = ({ item }) => {
               <Text>/ Like</Text>
             </View>
             <IconButton
-              icon={AddToLike?.includes({...item}) ? "heart" : "heart-outline"}
-              iconColor={AddToLike?.includes({...item}) ? accentColor : "dimgray"}
+              icon={
+                AddToLike?.includes(item) ? "heart" : "heart-outline"
+              }
+              iconColor={
+                AddToLike?.includes(item) ? accentColor : "dimgray"
+              }
               backgroundColor="white"
               size={24}
               onPress={() => {
                 setHeart(!heart);
-                if (AddToLike?.includes({ ...item }))
-                  dispatch(removeItem({ id: item.id }));
-                else dispatch(selectItem({ ...item }));
+                if (AddToLike?.includes(item))
+                  dispatch(removeItem(item));
+                else dispatch(selectItem(item));
               }}
             />
           </View>

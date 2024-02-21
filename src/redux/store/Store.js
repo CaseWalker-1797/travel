@@ -3,7 +3,6 @@ import AddToLike from "../slice/AddToLikeSlice";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from '@react-native-async-storage/async-storage';
 import { persistReducer } from "redux-persist";
-import { version } from "react";
 
 const persistConfig = {
   key: "root",
