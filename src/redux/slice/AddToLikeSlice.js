@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { items: [] };
+const initialState = { items: [ ] };
 
 const AddToLike = createSlice({
   name: "addLike",
   initialState,
   reducers: {
     selectItem: (state, action) => {
+      console.log("state.items ==> ", state.items);
+      console.log("action.payload ==> ", action.payload);
       state.items = [...state.items, action.payload];
     },
     removeItem: (state, action) => {

@@ -58,12 +58,8 @@ const AllTopTripCard = ({ item }) => {
               <Text>/ Like</Text>
             </View>
             <IconButton
-              icon={
-                AddToLike?.includes({ ...item }) ? "heart" : "heart-outline"
-              }
-              iconColor={
-                AddToLike?.includes({ ...item }) ? accentColor : "dimgray"
-              }
+              icon={AddToLike?.includes({...item}) ? "heart" : "heart-outline"}
+              iconColor={AddToLike?.includes({...item}) ? accentColor : "dimgray"}
               backgroundColor="white"
               size={24}
               onPress={() => {

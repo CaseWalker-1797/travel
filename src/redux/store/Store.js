@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AddToLikeSlice from "../slice/AddToLikeSlice";
+import AddToLike from "../slice/AddToLikeSlice";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from '@react-native-async-storage/async-storage';
 import { persistReducer } from "redux-persist";
@@ -11,7 +11,7 @@ const persistConfig = {
   storage,
 };
 const reducer = combineReducers({
-  addLike: AddToLikeSlice,
+  addLike: AddToLike,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
