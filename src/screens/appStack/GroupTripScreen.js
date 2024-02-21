@@ -5,9 +5,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton } from "react-native-paper";
 import AllGroupTripCard from "../../components/AllGroupTripCard";
 import { useNavigation } from "@react-navigation/native";
+import { API } from "../../API/API";
 
 const AllGroupTrip = () => {
   const navigation = useNavigation();
+  const renderData = ({ item }) => <AllGroupTripCard item={item} />;
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Back Button & Header */}
@@ -21,8 +24,7 @@ const AllGroupTrip = () => {
         />
         <Text style={textStyles.headingText}>All Group Trips</Text>
       </View>
-      <AllGroupTripCard />
-      <FlatList />
+      <FlatList data={API()} renderItem={renderData} />
     </SafeAreaView>
   );
 };

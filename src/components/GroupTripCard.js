@@ -14,10 +14,10 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ProgressBar from "react-native-progress/Bar";
 import { useNavigation } from "@react-navigation/native";
 import { horizontalScale, verticalScale } from "../styles/Dimensions";
+import { API } from "../API/API";
 
 const GroupTrip = () => {
   const [info, setInfo] = useState([]);
-  const [show, setShow] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const GroupTrip = () => {
             borderWidth={0}
             color={accentColor}
             progress={0.8}
-            width={horizontalScale(180)}
+            width={horizontalScale(165)}
             height={8}
           />
         </View>
@@ -92,7 +92,7 @@ const GroupTrip = () => {
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={show ? info : info.slice(0, 3)}
+        data={API().slice(0, 3)}
         renderItem={renderData}
       />
     </>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
   image: {
-    width: horizontalScale(150),
+    width: horizontalScale(160),
     height: "100%",
     borderRadius: 40 / 2,
   },

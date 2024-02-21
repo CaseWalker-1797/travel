@@ -13,6 +13,7 @@ import { Icon } from "react-native-paper";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ProgressBar from "react-native-progress/Bar";
 import { useNavigation } from "@react-navigation/native";
+import { horizontalScale } from "../styles/Dimensions";
 
 const AllGroupTripCard = () => {
   const [info, setInfo] = useState([]);
@@ -70,7 +71,7 @@ const AllGroupTripCard = () => {
             borderWidth={0}
             color={accentColor}
             progress={0.8}
-            width={RFValue(160)}
+            width={horizontalScale(165)}
             height={8}
           />
         </View>
@@ -123,8 +124,8 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
   image: {
-    width: RFValue(140),
-    height: RFValue(140),
+    width: horizontalScale(160),
+    height:"100%",
     borderRadius: 40 / 2,
   },
   cardContentContainer: {

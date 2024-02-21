@@ -6,22 +6,24 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import Axios from "react-native-axios";
+import React, { useState } from "react";
 import { inactiveColor, bgColor, accentColor } from "../styles/Colors";
 import { Icon, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { showItem } from "../redux/slice/ShowContentSlice";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
-import { removeItem } from "../redux/slice/AddToLikeSlice";
+import {
+  removeItem,
+  selectItem,
+  selectedItems,
+} from "../redux/slice/AddToLikeSlice";
+import { API } from "../API/API";
 
 const TopTrip = () => {
-  const AddToLike = useSelector((state) => state.addLike);
+  const AddToLike = useSelector(selectedItems);
   const navigation = useNavigation();
   const [heart, setHeart] = useState();
   const dispatch = useDispatch();
-
 
   const renderData = ({ item }) => {
     return (
@@ -56,14 +58,19 @@ const TopTrip = () => {
               <Text style={textStyles.commonText}> / Likes</Text>
             </View>
             <IconButton
-              icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
-              iconColor={accentColor}
+              icon={
+                AddToLike?.includes({ ...item }) ? "heart" : "heart-outline"
+              }
+              iconColor={
+                AddToLike?.includes({ ...item }) ? accentColor : "dimgray"
+              }
               backgroundColor="white"
               size={24}
               onPress={() => {
                 setHeart(!heart);
-                if (AddToLike?.includes(item)) dispatch(removeItem(item));
-                else dispatch(selectItem(item));
+                if (AddToLike?.includes({ ...item }))
+                  dispatch(removeItem({ id: item.id }));
+                else dispatch(selectItem({ ...item }));
               }}
             />
           </View>
@@ -87,7 +94,7 @@ const TopTrip = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{ flexDirection: "row" }}
-        data={AddToLike}
+        data={API().slice(0, 3)}
         renderItem={renderData}
       />
     </>

@@ -4,24 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import AllTopTripCard from "../../components/AllTopTripCard";
-import Axios from "react-native-axios";
-import { useDispatch } from "react-redux";
+import { API } from "../../API/API";
+import { bgColor } from "../../styles/Colors";
 
 const AllTopTrip = () => {
   const navigation = useNavigation();
-  const [info, setInfo] = useState([]);
   const renderData = ({ item }) => <AllTopTripCard item={item} />;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    Axios.get("https://unikwork.com/instagram/api/get_data.php")
-      .then((response) => {
-        setInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,7 +24,7 @@ const AllTopTrip = () => {
         />
         <Text style={textStyles.headingText}>All Top Trips</Text>
       </View>
-      <FlatList data={info} renderItem={renderData} />
+      <FlatList data={API()} renderItem={renderData} />
     </SafeAreaView>
   );
 };

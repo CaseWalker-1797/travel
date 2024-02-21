@@ -6,22 +6,15 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  TextInputComponent,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import {
-  accentColor,
-  bgColor,
-  borderColor,
-  inactiveColor,
-} from "../styles/Colors";
+import { accentColor, bgColor, inactiveColor } from "../styles/Colors";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { cat } from "../constants";
 
 const Categories = () => {
   const [selectItem, setSelect] = useState(1);
   const [categories, setCategories] = useState([]);
-  // const [click, setClick] = useState(false);
   useEffect(() => {
     setCategories(cat), [];
   });
@@ -80,6 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 100 / 2,
     borderWidth: 1,
     borderColor: inactiveColor,
+    backgroundColor: bgColor,
   },
   imageContainer: {
     borderRadius: 90,

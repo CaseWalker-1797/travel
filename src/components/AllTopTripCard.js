@@ -1,23 +1,20 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { accentColor, bgColor } from "../styles/Colors";
 import { Icon, IconButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { selectItem, removeItem } from "../redux/slice/AddToLikeSlice";
+import {
+  selectItem,
+  removeItem,
+  selectedItems,
+} from "../redux/slice/AddToLikeSlice";
 import { horizontalScale, verticalScale } from "../styles/Dimensions";
 
 const AllTopTripCard = ({ item }) => {
-  const AddToLike = useSelector((state) => state.addLike);
+  const AddToLike = useSelector(selectedItems);
   const [heart, setHeart] = useState();
   const dispatch = useDispatch();
-  // console.log("AddToLike ==> ", JSON.stringify(AddToLike));
+  console.log("AddToLike ==> ", JSON.stringify(AddToLike));
   // console.log("item ==> ", JSON.stringify(item));
   // console.log("state ==> ", AddToLike?.includes(item));
 
@@ -61,14 +58,19 @@ const AllTopTripCard = ({ item }) => {
               <Text>/ Like</Text>
             </View>
             <IconButton
-              icon={AddToLike?.includes(item) ? "heart" : "heart-outline"}
-              iconColor={AddToLike?.includes(item) ? accentColor : "dimgray"}
+              icon={
+                AddToLike?.includes({ ...item }) ? "heart" : "heart-outline"
+              }
+              iconColor={
+                AddToLike?.includes({ ...item }) ? accentColor : "dimgray"
+              }
               backgroundColor="white"
               size={24}
               onPress={() => {
                 setHeart(!heart);
-                if (AddToLike?.includes(item)) dispatch(removeItem(item));
-                else dispatch(selectItem(item));
+                if (AddToLike?.includes({ ...item }))
+                  dispatch(removeItem({ id: item.id }));
+                else dispatch(selectItem({ ...item }));
               }}
             />
           </View>
